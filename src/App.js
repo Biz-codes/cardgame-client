@@ -16,11 +16,24 @@ function App() {
           <h4>A card game</h4>
         </header>
         <main>
-          <div className = "computer-deck deck">26</div>
-          <div className = "computer-card-slot card-slot"></div>
+          <div className = "computer playspace">
+            <div className = "computer-deck deck">26</div>
+            <div className = "computer-card-slot card-slot">
+              <div className = "card red" data-value="9♥️">
+                ♥️
+              </div>
+            </div>
+          </div>
           <div className = "message">lkhgf</div>
-          <div className = "player-deck deck">26</div>
-          <div className = "player-card-slot card-slot"></div>
+          <div className = "player playspace">
+            <div className = "player-deck deck">26</div>
+            <div className = "player-card-slot card-slot">
+              <div className = "card black" data-value="9♠️">
+                  ♠️
+                </div>
+            </div>
+          </div>
+          
         </main>
 
         {/* <Switch>
