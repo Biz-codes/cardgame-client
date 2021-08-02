@@ -121,28 +121,31 @@ h2 {
   font-size: 70%;
 }
 
-.playspace {
-  border: 1px dashed blue;
+.playspace,
+.common-space {
   display: flex;
   flex-direction: row;
+  height: 22vh;
+  /* margin: 10px; */
+  padding: 10px;
 }
 
 .deck {
   background-image: url(pride-fist.jpeg);
   background-size: cover;
   display: flex;
-  height: 100%;
-  width: 175px;
+  height: 95%;
+  width: 120px;
   border: 1px solid black;
   margin: 10px;
-  padding: 85px;
+  /* padding: 85px; */
   text-align: center;
   align-items: center;
-  font-size: 400%;
-  color: white;
-  font-weight: bold;
+  /* font-size: 400%; */
+  /* color: white; */
+  /* font-weight: bold; */
   border-radius: 10px;
-  user-select: none;
+  /* user-select: none; */
 }
 
 .message {
@@ -152,7 +155,19 @@ h2 {
 
 .card-slot {
   display: flex;
-  height: 100%;
+  height: 95%;
+  border: 3px dashed hotpink;
+  width: 120px;
+  margin: 10px;
+}
+
+.dealer-card-slot {
+  margin-right: 30px;
+  border: 3px dashed blue;
+}
+
+.discard-pile {
+  border: 3px dashed cyan;
 }
 
 .card {
@@ -161,14 +176,14 @@ h2 {
   background-size: cover;
   display: flex;
   height: 100%;
-  width: 175px;
+  width: 120px;
   border: 1px solid black;
-  margin: 10px;
-  padding: 60px 10px ;
+  /* margin: 10px; */
+  /* padding: 60px 10px ; */
   text-align: center;
   justify-content: center;
   align-items: center;
-  font-size: 500%;
+  font-size: 400%;
   font-family: cursive;
   border-radius: 10px;
   user-select: none;
@@ -186,7 +201,7 @@ h2 {
 .card::after {
   content: attr(data-value);
   position: absolute;
-  font-size: 50%;
+  font-size: 25%;
 }
 
 .card::before {

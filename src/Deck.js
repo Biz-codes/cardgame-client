@@ -39,22 +39,19 @@ export class Card {
         return this.suit === '♣️' || this.suit === '♠️' ? 'black' : 'red'
     }
 
-    getCardValue() {
-        return (
-            <div className = 'card'>
-                {this.suit}
-                {this.value}
-            </div>
-        )
-    }
+    // getSuit() {
+    //     const suitDisplay = this.suit
+    //     return suitDisplay
+        
+    // }
 
-    getHTML() {
-        const cardDiv = document.createElement('div')
-        cardDiv.innerText = this.suit
-        cardDiv.classList.add("card", this.getColor())
-        cardDiv.dataset.value = `${this.value} ${this.suit}`
-        return cardDiv
-    }
+    // getHTML() {
+    //     const cardDiv = document.createElement('div')
+    //     cardDiv.innerText = this.suit
+    //     cardDiv.classList.add("card", this.getColor())
+    //     cardDiv.dataset.value = `${this.value} ${this.suit}`
+    //     return cardDiv
+    // }
 }
 
 function freshDeck() {
