@@ -54,9 +54,9 @@ export default class Playzone extends Component {
     dealComputerCard = () => {
       // this.inRound = true
       
-      // let dealtCard = this.computerDeck.pop()
+      let dealtCard = this.computerDeck.pop()
       this.setState({
-        computerDealerCard: '9♠️'
+        computerDealerCard: dealtCard
         
       })
       console.log(this.computerDealerCard)
