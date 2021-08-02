@@ -36,20 +36,21 @@ export default class Playzone extends Component {
           "Q": 13
         }
         
+
         this.state = {
           // inRound: '',
           computerDealerCard: '',
-          computerCardOne: [],
-          computerCardTwo: [],
-          computerCardThree: [],
-          computerCardFour: [],
-          computerCardFive: [],
-          playerDealerCard: [],
-          playerCardOne: [],
-          playerCardTwo: [],
-          playerCardThree: [],
-          playerCardFour: [],
-          playerCardFive: [],
+          computerCardOne: '',
+          computerCardTwo: '',
+          computerCardThree: '',
+          computerCardFour: '',
+          computerCardFive: '',
+          playerDealerCard: '',
+          playerCardOne: '',
+          playerCardTwo: '',
+          playerCardThree: '',
+          playerCardFour: '',
+          playerCardFive: '',
         }
         
     }
