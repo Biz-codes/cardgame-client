@@ -52,8 +52,8 @@ export default class Playzone extends Component {
 
 
     dealComputerCard = () => {
+      // e.preventDefault();
       // this.inRound = true
-      
       let dealtCard = this.computerDeck.pop()
       this.setState({
         computerDealerCard: dealtCard
