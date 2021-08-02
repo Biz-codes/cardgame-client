@@ -57,6 +57,7 @@ Is a short set of CSS rules that resets the styling of all HTML elements to a co
 }
 
 body {
+  font-family: "Spectral", serif;
   cursor: pointer;
   justify-content: center;
   font-size: 16px;
@@ -119,6 +120,61 @@ h1 {
 h2 {
   color: rgb(179, 29, 29);
   font-size: 70%;
+}
+
+h4 {
+  font-size: 120%;
+  color: #f07a03;
+  margin: 10px;
+}
+
+h5 {
+  font-size: 110%;
+  color: #00bd00;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.hook {
+  background-color:#f20505;
+  font-size: 150%;
+  width: 70%;
+  margin-left: 15%;
+  margin-bottom: 20px;
+}
+
+li {
+  list-style: none;
+}
+
+.directions {
+  display: flex;
+  flex-direction: row;
+  color: #020873;
+}
+
+.rules {
+  width: 35%;
+  margin-right: 15%;
+  background-color: #f7f7f7;
+  padding: 10px;
+}
+
+.play {
+  width: 35%;
+  margin-left: 15%;
+  background-color: #f7f7f7;
+  padding: 10px;
+}
+
+button {
+  border: 2px solid #020873;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #10ffff;
+  font-family: "Spectral", serif;
+  font-size: 200%;
 }
 
 .playspace,
