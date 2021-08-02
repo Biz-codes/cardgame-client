@@ -14,7 +14,7 @@ export default class Playzone extends Component {
         const computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))
 
         // console.log(deck)
-        console.log(computerDeck, playerDeck)
+        // console.log(computerDeck, playerDeck)
 
         const CARD_VALUE_MAP = {
           "A": 1,
@@ -34,7 +34,7 @@ export default class Playzone extends Component {
         
         this.state = {
           inRound: '',
-          computerDealerCard: [],
+          computerDealerCard: '',
           computerCardOne: [],
           computerCardTwo: [],
           computerCardThree: [],
@@ -51,11 +51,15 @@ export default class Playzone extends Component {
     }
 
 
-    dealComputerCard(e) {
-      e.preventDefault();
+    dealComputerCard = () => {
       // this.inRound = true
-      this.computerDealerCard = this.computerDeck.pop()
-      return this.computerDealerCard
+      
+      // let dealtCard = this.computerDeck.pop()
+      this.setState({
+        computerDealerCard: '9♠️'
+        
+      })
+      console.log(this.computerDealerCard)
     }
 
     isGameOver(deck) {
@@ -63,15 +67,16 @@ export default class Playzone extends Component {
     }
 
     render() {
+      const computerDealerCard = this.state
         return (
             <div>
               <div className = "computer playspace">
-                <button >
-                  <div onClick = {(e) => this.dealComputerCard} className = "computer-deck deck"></div>
+                <button className = "computer-deck deck" onClick = {() => this.dealComputerCard()} >
+                  {/* <div ></div> */}
                 </button>
                 
                 <div className = "computer-card-slot card-slot dealer-card-slot">
-                  <div className = "card" data-value={this.state.computerDealerCard.value}>♠️</div>
+                  <div className = "card" data-value={computerDealerCard}>♠️</div>
                 </div>
                 <div className = "computer-card-slot card-slot card-slot-one"></div>
                 <div className = "computer-card-slot card-slot card-slot-two"></div>
