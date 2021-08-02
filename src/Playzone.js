@@ -9,6 +9,9 @@ export default class Playzone extends Component {
         const deck = new Deck()
         deck.shuffle()
 
+      // cut the deck into two halves. These should be global variables, so I'm not sure 
+      // why I can't access them inside dealComputerCard() function below
+
         const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
         const playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
         const computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))
@@ -16,6 +19,7 @@ export default class Playzone extends Component {
         // console.log(deck)
         // console.log(computerDeck, playerDeck)
 
+        // I will use these later once I set up scoring
         const CARD_VALUE_MAP = {
           "A": 1,
           "2": 2,
@@ -33,7 +37,7 @@ export default class Playzone extends Component {
         }
         
         this.state = {
-          inRound: '',
+          // inRound: '',
           computerDealerCard: '',
           computerCardOne: [],
           computerCardTwo: [],
@@ -50,9 +54,10 @@ export default class Playzone extends Component {
         
     }
 
+    // when the user clicks on the deck, I want the top card to be moved to the 
+    // computerDealerCard slot and display in the DOM
 
     dealComputerCard = () => {
-      // e.preventDefault();
       // this.inRound = true
       let dealtCard = this.computerDeck.pop()
       this.setState({
@@ -62,6 +67,7 @@ export default class Playzone extends Component {
       console.log(this.computerDealerCard)
     }
 
+    // will implement later
     isGameOver(deck) {
       return deck.numberOfCards === 0
     }
@@ -71,10 +77,11 @@ export default class Playzone extends Component {
         return (
             <div>
               <div className = "computer playspace">
+              {/* This is where the deck is. I want to be able to click on it to deal a card */}
                 <button className = "computer-deck deck" onClick = {() => this.dealComputerCard()} >
                   {/* <div ></div> */}
                 </button>
-                
+                {/* This is where I want the card to render in this slot */}
                 <div className = "computer-card-slot card-slot dealer-card-slot">
                   <div className = "card" data-value={computerDealerCard}>♠️</div>
                 </div>
