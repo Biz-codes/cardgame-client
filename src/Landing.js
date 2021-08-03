@@ -17,7 +17,7 @@ function Landing() {
             <p>The goal of the game is to create the best Drag Show army! Each player starts with a deck of 26 cards, an empty dealt-card pile, and 5 empty slots for their army. When all the cards have been dealt, the best army wins!</p>
             <p>Battle of the Queens is a 2 player game. So, you can either get a friend to play, or do both players' turns yourself.</p>
             <h5>How to win:</h5>
-            <p>When all the cards have been dealt, the winner will be whoever has created the best Drag Show by having the most points in their 5-card army, according to the scoring system:</p>
+            <p>When all the cards have been dealt, use the scoring guide below to tally up each players' points. The winner will be whoever has created the best Drag Show by having the most points in their 5-card army, according to the scoring system:</p>
             <ul>
               <li>Q = 13 points: Drag Queen - You MUST have at least one Drag Queen leading your army! If you have no Queens in your hand, you will automatically lose.</li>
               <li>K = 12 points: Drag King - Although there aren't as many in the world, Drag Kings rule too!</li>

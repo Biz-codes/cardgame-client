@@ -16,7 +16,7 @@ export default class Playzone extends Component {
         
         
 
-        console.log(deck)
+        // console.log(deck)
         // console.log(computerDeck, playerDeck)
 
         // I will use these later once I set up scoring
@@ -41,6 +41,9 @@ export default class Playzone extends Component {
           inRound: '',
           playerDeck: new Deck(deck.cards.slice(0, deckMidpoint)),
           computerDeck: new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards)),
+          dealerNumberOfCards: deck.numberOfCards,
+          computerDealerNumberOfCards: 26,
+          playerDealerNumberOfCards: 26,
           computerDealerCard: '',
           computerCardOne: '',
           computerCardTwo: '',
@@ -61,6 +64,12 @@ export default class Playzone extends Component {
     componentDidMount() {
       this.setState({
         ...this.state,
+        inRound: false,
+        playerDeck: this.state.playerDeck,
+        computerDeck: this.state.computerDeck,
+        dealerNumberOfCards: this.state.dealerNumberOfCards,
+        computerDealerNumberOfCards: this.state.computerDealerNumberOfCards,
+        playerDealerNumberOfCards: this.state.playerDealerNumberOfCards,
         computerDealerCard: {
           suit: '',
           value: ''
@@ -122,25 +131,37 @@ export default class Playzone extends Component {
     dealComputerCard = () => {
       // this.inRound = true
       // console.log(this)
+      let dealerNumberOfCards = this.state.dealerNumberOfCards
+      let computerDealerNumberOfCards = this.state.computerDealerNumberOfCards
       let dealtCard = this.state.computerDeck.pop()
       console.log(dealtCard)
       this.setState({
         ...this.state,
-        computerDealerCard: dealtCard        
+        computerDealerCard: dealtCard,
+        dealerNumberOfCards: dealerNumberOfCards - 1,
+        computerDealerNumberOfCards: computerDealerNumberOfCards - 1
       })      
+      // console.log(dealerNumberOfCards, computerDealerNumberOfCards)
     }
 
     dealPlayerCard = () => {
       // this.inRound = true
       // console.log(this)
+      let dealerNumberOfCards = this.state.dealerNumberOfCards
+      let playerDealerNumberOfCards = this.state.playerDealerNumberOfCards
       let dealtCard = this.state.playerDeck.pop()
       console.log(dealtCard)
       this.setState({
         ...this.state,
-        playerDealerCard: dealtCard        
-      })      
+        playerDealerCard: dealtCard,
+        dealerNumberOfCards: dealerNumberOfCards - 1,
+        playerDealerNumberOfCards: playerDealerNumberOfCards - 1        
+      })  
+      
+          
     }
 
+    
     joinComputerArmy = () => {
       console.log(this.state.computerCardOne)
       if (this.state.computerCardOne.suit === '' && this.state.computerCardOne.value === '') {
@@ -291,14 +312,49 @@ export default class Playzone extends Component {
       })
     }
 
-    // will implement later
-    isGameOver(deck) {
-      return deck.numberOfCards === 0
+    // const CARD_VALUE_MAP = {
+    //   "A": 1,
+    //   "2": 2,
+    //   "3": 3,
+    //   "4": 4,
+    //   "5": 5,
+    //   "6": 6,
+    //   "7": 7,
+    //   "8": 8,
+    //   "9": 9,
+    //   "10": 10,
+    //   "J": 11,
+    //   "K": 12,
+    //   "Q": 13
+    // }
+
+    scoreGame() {
+      let CARD_VALUE_MAP = this.CARD_VALUE_MAP
+      if (CARD_VALUE_MAP[this.state.computerCardOne.value] + CARD_VALUE_MAP[this.state.computerCardTwo.value] + CARD_VALUE_MAP[this.state.computerCardThree.value] + CARD_VALUE_MAP[this.state.computerCardFour.value] + CARD_VALUE_MAP[this.state.computerCardFive.value] > CARD_VALUE_MAP[this.state.playerCardOne.value] + CARD_VALUE_MAP[this.state.playerCardTwo.value] + CARD_VALUE_MAP[this.state.playerCardThree.value] + CARD_VALUE_MAP[this.state.playerCardFour.value] + CARD_VALUE_MAP[this.state.playerCardFive.value]) {
+        return "Player 1 wins the Drag War!"
+      } else return "Player 2 wins the Drag War!"
     }
+
+    
+
+    // will implement later
+    // isGameOver() {
+    //   if (this.state.dealerNumberOfCards === 0) {
+    //     this.setState({
+    //       ...this.state,
+    //       inRound: false
+    //     })
+        
+    //   }
+    // }
+
+
 
     render() {
       const computerDealerCard = this.state.computerDealerCard
       const playerDealerCard = this.state.playerDealerCard
+      const computerDealerNumberOfCards = this.state.computerDealerNumberOfCards
+      const playerDealerNumberOfCards = this.state.playerDealerNumberOfCards
       const computerCardOne = this.state.computerCardOne
       const computerCardTwo = this.state.computerCardTwo
       const computerCardThree = this.state.computerCardThree
@@ -316,7 +372,7 @@ export default class Playzone extends Component {
             <div>
               <div className="player-name">Player 1</div>
               <div className = "computer playspace">
-                <button className = "computer-deck deck" onClick = {() => this.dealComputerCard()} ></button>
+                <button className = "computer-deck deck" onClick = {() => this.dealComputerCard()} >{computerDealerNumberOfCards}</button>
                 <div className = "computer-card-slot card-slot dealer-card-slot">
                   <div className = "card" onClick = {() => this.joinComputerArmy()} data-value={"" + computerDealerCard.value + " " + computerDealerCard.suit}>{computerDealerCard.suit}</div>
                 </div>
@@ -336,15 +392,17 @@ export default class Playzone extends Component {
                   <div className = "card" onClick = {() => this.discardComputerCardFive()} data-value={"" + computerCardFive.value + " " + computerCardFive.suit}>{computerCardFive.suit}</div>
                 </div>
               </div>
-              <div className = "common-space">
-                <div className = "message"></div>
+              <div className = "common-space">            
+                <p>Discard Pile</p>    
                 <div className = "card-slot discard-pile">
                   <div className = "card" data-value={"" + discardPile.value + " " + discardPile.suit}>{discardPile.suit}</div>
                 </div>
+                <div className = "message"></div>
+                {/* <button className = "score-button" onClick = {() => this.scoreGame()}>Score Game</button> */}
               </div>
               <div className="player-name two">Player 2</div>
               <div className = "player playspace">
-                <button className = "player-deck deck" onClick = {() => this.dealPlayerCard()}></button>
+                <button className = "player-deck deck" onClick = {() => this.dealPlayerCard()}>{playerDealerNumberOfCards}</button>
                 <div className = "player-card-slot card-slot dealer-card-slot">
                   <div className = "card" onClick = {() => this.joinPlayerArmy()} data-value={"" + playerDealerCard.value + " " + playerDealerCard.suit}>{playerDealerCard.suit}</div>
                 </div>
@@ -369,7 +427,7 @@ export default class Playzone extends Component {
             <p>The goal of the game is to create the best Drag Show army! Each player starts with a deck of 26 cards, an empty dealt-card pile, and 5 empty slots for their army. When all the cards have been dealt, the best army wins!</p>
             <p>Battle of the Queens is a 2 player game. So, you can either get a friend to play, or do both players' turns yourself.</p>
             <h5>How to win:</h5>
-            <p>When all the cards have been dealt, the winner will be whoever has created the best Drag Show by having the most points in their 5-card army, according to the scoring system:</p>
+            <p>When all the cards have been dealt, use the scoring guide below to tally up each players' points. The winner will be whoever has created the best Drag Show by having the most points in their 5-card army, according to the scoring system:</p>
             <ul>
               <li>Q = 13 points: Drag Queen - You MUST have at least one Drag Queen leading your army! If you have no Queens in your hand, you will automatically lose.</li>
               <li>K = 12 points: Drag King - Although there aren't as many in the world, Drag Kings rule too!</li>
