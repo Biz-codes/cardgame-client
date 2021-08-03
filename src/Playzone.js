@@ -53,6 +53,7 @@ export default class Playzone extends Component {
           playerCardThree: '',
           playerCardFour: '',
           playerCardFive: '',
+          discardPile: ''
         }
         
     }
@@ -108,6 +109,10 @@ export default class Playzone extends Component {
           suit: '',
           value: ''
         },
+        discardPile: {
+          suit: '',
+          value: ''
+        }
       })
     }
 
@@ -206,6 +211,86 @@ export default class Playzone extends Component {
       }
     }
 
+    discardComputerCardOne = () => {
+      this.setState({
+        ...this.state,
+        discardPile: this.state.computerCardOne,
+        computerCardOne: {suit: '', value: ''}
+      })
+    }
+
+    discardComputerCardTwo = () => {
+      this.setState({
+        ...this.state,
+        discardPile: this.state.computerCardTwo,
+        computerCardTwo: {suit: '', value: ''}
+      })
+    }
+
+    discardComputerCardThree = () => {
+      this.setState({
+        ...this.state,
+        discardPile: this.state.computerCardThree,
+        computerCardThree: {suit: '', value: ''}
+      })
+    }
+
+    discardComputerCardFour = () => {
+      this.setState({
+        ...this.state,
+        discardPile: this.state.computerCardFour,
+        computerCardFour: {suit: '', value: ''}
+      })
+    }
+
+    discardComputerCardFive = () => {
+      this.setState({
+        ...this.state,
+        discardPile: this.state.computerCardFive,
+        computerCardFive: {suit: '', value: ''}
+      })
+    }
+
+    discardPlayerCardOne = () => {
+      this.setState({
+        ...this.state,
+        discardPile: this.state.playerCardOne,
+        playerCardOne: {suit: '', value: ''}
+      })
+    }
+
+    discardPlayerCardTwo = () => {
+      this.setState({
+        ...this.state,
+        discardPile: this.state.playerCardTwo,
+        playerCardTwo: {suit: '', value: ''}
+      })
+    }
+
+    discardPlayerCardThree = () => {
+      this.setState({
+        ...this.state,
+        discardPile: this.state.playerCardThree,
+        playerCardThree: {suit: '', value: ''}
+      })
+    }
+
+    discardPlayerCardFour = () => {
+      this.setState({
+        ...this.state,
+        discardPile: this.state.playerCardFour,
+        playerCardFour: {suit: '', value: ''}
+      })
+    }
+
+    discardPlayerCardFive = () => {
+      this.setState({
+        ...this.state,
+        discardPile: this.state.playerCardFive,
+        playerCardFive: {suit: '', value: ''}
+      })
+    }
+
     // will implement later
     isGameOver(deck) {
       return deck.numberOfCards === 0
@@ -224,6 +309,8 @@ export default class Playzone extends Component {
       const playerCardThree = this.state.playerCardThree
       const playerCardFour = this.state.playerCardFour
       const playerCardFive = this.state.playerCardFive
+      const discardPile = this.state.discardPile
+      
 
         return (
             <div>
@@ -234,24 +321,26 @@ export default class Playzone extends Component {
                   <div className = "card" onClick = {() => this.joinComputerArmy()} data-value={"" + computerDealerCard.value + " " + computerDealerCard.suit}>{computerDealerCard.suit}</div>
                 </div>
                 <div className = "computer-card-slot card-slot card-slot-one">
-                  <div className = "card" data-value={"" + computerCardOne.value + " " + computerCardOne.suit}>{computerCardOne.suit}</div>
+                  <div className = "card" onClick = {() => this.discardComputerCardOne()} data-value={"" + computerCardOne.value + " " + computerCardOne.suit}>{computerCardOne.suit}</div>
                 </div>
                 <div className = "computer-card-slot card-slot card-slot-two">
-                  <div className = "card" data-value={"" + computerCardTwo.value + " " + computerCardTwo.suit}>{computerCardTwo.suit}</div>
+                  <div className = "card" onClick = {() => this.discardComputerCardTwo()} data-value={"" + computerCardTwo.value + " " + computerCardTwo.suit}>{computerCardTwo.suit}</div>
                 </div>
                 <div className = "computer-card-slot card-slot card-slot-three">
-                  <div className = "card" data-value={"" + computerCardThree.value + " " + computerCardThree.suit}>{computerCardThree.suit}</div>
+                  <div className = "card" onClick = {() => this.discardComputerCardThree()} data-value={"" + computerCardThree.value + " " + computerCardThree.suit}>{computerCardThree.suit}</div>
                 </div>
                 <div className = "computer-card-slot card-slot card-slot-four">
-                  <div className = "card" data-value={"" + computerCardFour.value + " " + computerCardFour.suit}>{computerCardFour.suit}</div>
+                  <div className = "card" onClick = {() => this.discardComputerCardFour()} data-value={"" + computerCardFour.value + " " + computerCardFour.suit}>{computerCardFour.suit}</div>
                 </div>
                 <div className = "computer-card-slot card-slot card-slot-five">
-                  <div className = "card" data-value={"" + computerCardFive.value + " " + computerCardFive.suit}>{computerCardFive.suit}</div>
+                  <div className = "card" onClick = {() => this.discardComputerCardFive()} data-value={"" + computerCardFive.value + " " + computerCardFive.suit}>{computerCardFive.suit}</div>
                 </div>
               </div>
               <div className = "common-space">
                 <div className = "message"></div>
-                <div className = "card-slot discard-pile"></div>
+                <div className = "card-slot discard-pile">
+                  <div className = "card" data-value={"" + discardPile.value + " " + discardPile.suit}>{discardPile.suit}</div>
+                </div>
               </div>
               <div className="player-name two">Player 2</div>
               <div className = "player playspace">
@@ -260,19 +349,19 @@ export default class Playzone extends Component {
                   <div className = "card" onClick = {() => this.joinPlayerArmy()} data-value={"" + playerDealerCard.value + " " + playerDealerCard.suit}>{playerDealerCard.suit}</div>
                 </div>
                 <div className = "player-card-slot card-slot card-slot-one">
-                  <div className = "card" data-value={"" + playerCardOne.value + " " + playerCardOne.suit}>{playerCardOne.suit}</div>
+                  <div className = "card" onClick = {() => this.discardPlayerCardOne()} data-value={"" + playerCardOne.value + " " + playerCardOne.suit}>{playerCardOne.suit}</div>
                 </div>
                 <div className = "player-card-slot card-slot card-slot-two">
-                  <div className = "card" data-value={"" + playerCardTwo.value + " " + playerCardTwo.suit}>{playerCardTwo.suit}</div>
+                  <div className = "card" onClick = {() => this.discardPlayerCardTwo()} data-value={"" + playerCardTwo.value + " " + playerCardTwo.suit}>{playerCardTwo.suit}</div>
                 </div>
                 <div className = "player-card-slot card-slot card-slot-three">
-                  <div className = "card" data-value={"" + playerCardThree.value + " " + playerCardThree.suit}>{playerCardThree.suit}</div>
+                  <div className = "card" onClick = {() => this.discardPlayerCardThree()} data-value={"" + playerCardThree.value + " " + playerCardThree.suit}>{playerCardThree.suit}</div>
                 </div>
                 <div className = "player-card-slot card-slot card-slot-four">
-                  <div className = "card" data-value={"" + playerCardFour.value + " " + playerCardFour.suit}>{playerCardFour.suit}</div>
+                  <div className = "card" onClick = {() => this.discardPlayerCardFour()} data-value={"" + playerCardFour.value + " " + playerCardFour.suit}>{playerCardFour.suit}</div>
                 </div>
                 <div className = "player-card-slot card-slot card-slot-five">
-                  <div className = "card" data-value={"" + playerCardFive.value + " " + playerCardFive.suit}>{playerCardFive.suit}</div>
+                  <div className = "card" onClick = {() => this.discardPlayerCardFive()} data-value={"" + playerCardFive.value + " " + playerCardFive.suit}>{playerCardFive.suit}</div>
                 </div>
               </div>
               <div className = "in-game-rules">
