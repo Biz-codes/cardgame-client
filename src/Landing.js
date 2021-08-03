@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import './App.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 function Landing() {
   return (
@@ -51,9 +54,43 @@ function Landing() {
           
         </div>
 
-        <div className="contact">
-          <h5>Meet the Engineer</h5>
-          <p></p>
+        <div className="about">
+          <h6>Meet the Engineer</h6>
+          <p className="bio">
+            I am Biz, a full stack developer full of grit and humor!
+            I love puzzles, games of strategy, and modular building projects of all kinds.
+            I love coding because it is another realm of puzzling and building,
+            and I am excited to be part of this ever-progressing field!
+          </p>
+          <p className="bio">
+              Transitioning from a decade as a Special Education Teacher,
+              I bring a proven expertise in strategic problem solving,
+              nurturing potential, data analysis, communication and teamwork.
+              Please contact me if you would like to connect!
+          </p>
+          <ul className="contact">
+              <li>
+                <a href="mailto:elizabeth.biz.hight@gmail.com?subject=Responding%20to%20Your%20Portfolio!">
+                  <FontAwesomeIcon icon={faEnvelope} className="contact-icon" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/elizabeth-biz-hight/"
+                  // target="_blank"
+                >
+                  <FontAwesomeIcon icon={faLinkedin} className="contact-icon" />
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://github.com/biz-codes" 
+                  // target="_blank"
+                >
+                  <FontAwesomeIcon icon={faGithub} className="contact-icon" />
+                </a>
+              </li>
+            </ul>
         </div>
       </div>
     </div>
